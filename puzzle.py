@@ -61,7 +61,7 @@ knowledge2 = And(
     # A can't be a Knight and a Knave
     Not(And(AKnight, AKnave)),
 
-    # A can't be a Knight and a Knave
+    # B can't be a Knight and a Knave
     Not(And(BKnight, BKnave)),
 
     # If A is a Knight then A and B are either both knights or both knaves 
@@ -83,7 +83,41 @@ knowledge2 = And(
 # B says "C is a knave."
 # C says "A is a knight."
 knowledge3 = And(
-    # TODO
+    # A can be a Knight or a Knave
+    Or(AKnight, AKnave), 
+
+    # B can be a Knight or a Knave
+    Or(BKnight, BKnave),
+
+    # C can be a Knight or a Knave
+    Or(CKnight, CKnave),
+
+    # A can't be a Knight and a Knave
+    Not(And(AKnight, AKnave)),
+
+    # B can't be a Knight and a Knave
+    Not(And(BKnight, BKnave)),
+
+    # C can't be a Knight and a Knave
+    Not(And(BKnight, BKnave)),
+
+    # If B is Knight and A is a Knight then A is a Knave
+    Implication(BKnight, Implication(AKnight, AKnave)),
+
+    # If B is a Knight and A is a Knave then A is a Knight
+    Implication(BKnight, Implication(AKnave, AKnight)),
+
+    # If B is a Knight then C is a Knave.
+    Implication(BKnight, CKnave),
+
+    # If B is a Knave then C is a Knight
+    Implication(BKnave, CKnight),
+
+    # If C is a Knight then A is a Knight
+    Implication(CKnight, AKnight),
+
+    # If C is a Knave then A is a Knave 
+    Implication(CKnave, AKnave)
 )
 
 
